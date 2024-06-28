@@ -245,6 +245,7 @@ public class Ship{
 
     public Cell findHProbCell(){
         // Calculates probabilities of all cells in grid
+        highestProbCell.setProb(0.0);
         for (int y = 0; y < grid.length; y++) {
             for (int x = 0; x < grid[0].length; x++) {
                 if(isOpenCell(x,y)){
