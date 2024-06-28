@@ -1,2 +1,3 @@
 # CSC440Proj2
-= test
+
+# Bot 1 Implementation
