@@ -1,4 +1,10 @@
 # CSC440Proj2 #
 
 ## Bot 1 Implementation ##
-Bot 1 operates by planning a path to the current highest probability cell.
+Bot 1 operates by planning a path to the current highest probability cell. It moves to that cell and only when it reaches the target cell, it does the action of sense. The sense action detects either a beep or no beep if it detects a mouse in the cell. If the mouse is not found, the program updates the probabilities and plans a new path. It repeats this cycle until the mouse is found. With this algorithm, Bot 1 senses rarely. 
+
+## Bot 2 Implementation ##
+Bot 2 alternates between moving and sensing each timestep. Every time it moves, it plans (or replans) a path based on the current highest probability cell. Because it is alternating between moving and sensing every timestep, this method keeps the bot moving generally in the direction of where the mouse is likely to be. However, the bot moves slower because every other timestep is being used to do the sense ability. 
+
+## Bot 3 Implementation ##
+We designed Bot 3 to be a balance of moving and sensing. We took into account when the best time to sense is, or when is it a good idea to move. We considered the utility of each decision and how we can make a more efficient Bot compared to the Bot 1 & 2 algorithms. We designed the bot as follows: The bot plans a path to the calculated highest probability cell. Proportional to the size of the path, the bot moves every timestep but stops a certain steps before reaching the mouse. Then, it switches into what we have called, "Detection Mode", where it alternates between moving and sensing as it gets closer to the button. For example, for a grid size of 35, a calculated path to the highest probability cell may be 18 steps long. Each timestep, the bot will move along the path towards the highest probability cell. Once the bot has 5 steps on the path left, it will switch to Detection Mode, where it alternates between moving and sensing. Conversely, a bot with a path of 6 steps will switch into Detection Mode when it has 3 steps left. The algorithm is designed so that the bot moves closer toward the direction of the mouse, but based on how much time the stochastic mouse has had to move, it starts sensing when it gets in the mouse radius.
