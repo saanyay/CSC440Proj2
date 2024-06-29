@@ -8,19 +8,28 @@ import java.util.Scanner;
 public class Main {
  
     private static final Random random = new Random();
-    Scanner myObj = new Scanner(System.in);
+    
  
     public static void main(String[] args) {
         int D = 15;
         String menuOption;
+        Scanner myObj = new Scanner(System.in);
 
         menuOption = printMenu();
 
         while(true){
+
             if(menuOption.equals("1")){ // Bot 1
+
+                // Stationary or Stochastic Mouse
+                String doesMouseMove;
+                System.out.print("Would you like to use a stochastic mouse? Type either 'Y' or 'N' \n(If N, the program will automatically implement a stationary mouse): ");
+                doesMouseMove = myObj.nextLine();
+
                 // Set Up & Initialization
                 Ship ship = new Ship(D);
                 boolean needRecalculation = true;
+                
                 // Bot
                 Bot_1 bot_1 = new Bot_1(ship);
                 Cell botLocation = bot_1.placeBot();
@@ -42,7 +51,7 @@ public class Main {
                         System.out.println("=================================");
                         System.out.println("Bot Location: " + botLocation.toString());
                         ship.setBot(botLocation.getX(), botLocation.getY());
-                        if(i != 0){
+                        if(i != 0 && doesMouseMove.equals("Y")){
                             // Comment off lines 47 & 48 for a stationary mouse
                             Cell tempMouse = mouse.moveMouse(mouseLocation);
                             mouseLocation.setLocation(tempMouse.getX(), tempMouse.getY());
@@ -82,6 +91,12 @@ public class Main {
                 break;
             }
             if(menuOption.equals("2")){ // Bot 2
+
+                // Stationary or Stochastic Mouse
+                String doesMouseMove;
+                System.out.print("Would you like to use a stochastic mouse? Type either 'Y' or 'N' \n(If N, the program will automatically implement a stationary mouse): ");
+                doesMouseMove = myObj.nextLine();
+
                 // Set Up & Initialization
                 Ship ship = new Ship(D);
                 int alternateMoves = 1; 
@@ -112,10 +127,12 @@ public class Main {
 
                         System.out.println("BOT SENSED, NOW MOVE TURN");
 
-                        // Moving Mouse
-                        Cell tempMouse = mouse.moveMouse(mouseLocation);
-                        mouseLocation.setLocation(tempMouse.getX(), tempMouse.getY());
-                        System.out.println("Mouse Location: " + mouseLocation.toString());
+                        if(doesMouseMove.equals("Y")){
+                            // Moving Mouse
+                            Cell tempMouse = mouse.moveMouse(mouseLocation);
+                            mouseLocation.setLocation(tempMouse.getX(), tempMouse.getY());
+                            System.out.println("Mouse Location: " + mouseLocation.toString());
+                        }
 
                         ship.printCompleteGrid();
                         if(mouseLocation.getX() == botLocation.getX() && mouseLocation.getY() == botLocation.getY()){
@@ -146,10 +163,12 @@ public class Main {
 
                         System.out.println("BOT MOVED, NOW SENSE TURN");
                         
-                        // Moving Mouse
-                        Cell tempMouse = mouse.moveMouse(mouseLocation);
-                        mouseLocation.setLocation(tempMouse.getX(), tempMouse.getY());
-                        System.out.println("Mouse Location: " + mouseLocation.toString());
+                        if(doesMouseMove.equals("Y")){
+                            // Moving Mouse
+                            Cell tempMouse = mouse.moveMouse(mouseLocation);
+                            mouseLocation.setLocation(tempMouse.getX(), tempMouse.getY());
+                            System.out.println("Mouse Location: " + mouseLocation.toString());
+                        }
 
                         ship.printCompleteGrid();
                         if(mouseLocation.getX() == botLocation.getX() && mouseLocation.getY() == botLocation.getY()){
@@ -190,6 +209,12 @@ public class Main {
              * when x steps away from hProbCell, start switching between sensing and moving as Bot 2 does
              */
             if(menuOption.equals("3")){ // Bot 3
+
+                // Stationary or Stochastic Mouse
+                String doesMouseMove;
+                System.out.print("Would you like to use a stochastic mouse? Type either 'Y' or 'N' \n(If N, the program will automatically implement a stationary mouse): ");
+                doesMouseMove = myObj.nextLine();
+
                 // Set Up & Initialization
                 Ship ship = new Ship(D);
                 int alternateMoves = 1; 
@@ -219,7 +244,7 @@ public class Main {
                         System.out.println("=================================");
                         System.out.println("Bot Location: " + botLocation.toString());
                         ship.setBot(botLocation.getX(), botLocation.getY());
-                        if(i != 0){
+                        if(i != 0 && doesMouseMove.equals("Y")){
                             // Comment off lines 47 & 48 for a stationary mouse
                             Cell tempMouse = mouse.moveMouse(mouseLocation);
                             mouseLocation.setLocation(tempMouse.getX(), tempMouse.getY());
@@ -275,10 +300,12 @@ public class Main {
 
                         System.out.println("BOT SENSED, NOW MOVE TURN");
 
-                        // Moving Mouse
-                        Cell tempMouse = mouse.moveMouse(mouseLocation);
-                        mouseLocation.setLocation(tempMouse.getX(), tempMouse.getY());
-                        System.out.println("Mouse Location: " + mouseLocation.toString());
+                        if(doesMouseMove.equals("Y")){
+                            // Moving Mouse
+                            Cell tempMouse = mouse.moveMouse(mouseLocation);
+                            mouseLocation.setLocation(tempMouse.getX(), tempMouse.getY());
+                            System.out.println("Mouse Location: " + mouseLocation.toString());
+                        }
 
                         ship.printCompleteGrid();
                         if(mouseLocation.getX() == botLocation.getX() && mouseLocation.getY() == botLocation.getY()){
@@ -309,10 +336,12 @@ public class Main {
 
                         System.out.println("BOT MOVED, NOW SENSE TURN");
                         
-                        // Moving Mouse
-                        Cell tempMouse = mouse.moveMouse(mouseLocation);
-                        mouseLocation.setLocation(tempMouse.getX(), tempMouse.getY());
-                        System.out.println("Mouse Location: " + mouseLocation.toString());
+                        if(doesMouseMove.equals("Y")){
+                            // Moving Mouse
+                            Cell tempMouse = mouse.moveMouse(mouseLocation);
+                            mouseLocation.setLocation(tempMouse.getX(), tempMouse.getY());
+                            System.out.println("Mouse Location: " + mouseLocation.toString());
+                        }
 
                         ship.printCompleteGrid();
                         if(mouseLocation.getX() == botLocation.getX() && mouseLocation.getY() == botLocation.getY()){
@@ -357,7 +386,7 @@ public class Main {
             System.out.print("what bot: ");
             Scanner myObj = new Scanner(System.in);
             menuOption = myObj.nextLine();
-            if(menuOption.equals("1") || menuOption.equals("2") || menuOption.equals("3") || menuOption.equals("4")){
+            if(menuOption.equals("1") || menuOption.equals("2") || menuOption.equals("3")){
                 return menuOption;
             }
             else{
