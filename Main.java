@@ -416,5 +416,12 @@ public class Main {
         }
         return menuOption;
     }
+    
+    // Function to proportionally switch bot 3 to detection mode
+    public int calcFunction(int pathSize){
+        // numOfStepsToEndBefore = P;
+        // P = sqrt(pathSize) -2 (?)
+        // P = pathSize * x - (
+    }
 
 }
