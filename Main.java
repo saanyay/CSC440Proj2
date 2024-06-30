@@ -396,6 +396,7 @@ public class Main {
         }
     }
 
+    // method created to ask user which bot they want to use 
     private static String printMenu(){
         String menuOption = null;
         try{
