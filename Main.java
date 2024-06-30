@@ -30,12 +30,12 @@ public class Main {
                 Ship ship = new Ship(D);
                 boolean needRecalculation = true;
                 
-                // Bot
+                // Bot Initialization
                 Bot_1 bot_1 = new Bot_1(ship);
                 Cell botLocation = bot_1.placeBot();
                 ship.setBot(botLocation.getX(), botLocation.getY());
 
-                // Mouse
+                // Mouse Initialization
                 Mouse mouse = new Mouse (ship);
                 Cell mouseLocation = mouse.placeMouse();
                 ship.setMouse(mouseLocation.getX(), mouseLocation.getY());
@@ -47,12 +47,13 @@ public class Main {
                     int timesteps = 0;
                     List<Cell> path = (bot_1.breadthFirstSearch(ship, hProbCell));
 
+                    // Iteration through the loop
                     for(int i = 0; i < path.size(); i++){
                         System.out.println("=================================");
                         System.out.println("Bot Location: " + botLocation.toString());
                         ship.setBot(botLocation.getX(), botLocation.getY());
                         if(i != 0 && doesMouseMove.equals("Y")){
-                            // Comment off lines 47 & 48 for a stationary mouse
+
                             Cell tempMouse = mouse.moveMouse(mouseLocation);
                             mouseLocation.setLocation(tempMouse.getX(), tempMouse.getY());
                             System.out.println("Mouse Location: " + mouseLocation.toString());
