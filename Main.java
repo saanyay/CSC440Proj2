@@ -366,6 +366,7 @@ public class Main {
                         }
                         Cell hProbCell = ship.findHProbCell();
                         List<Cell> path = (bot_3.breadthFirstSearch(ship, hProbCell));
+                    
                         if(path.size() > 0){
                             System.out.println("Path size: " + path.size());
                             if(path.size() > timesteps){
