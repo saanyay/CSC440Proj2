@@ -52,12 +52,15 @@ public class Main {
                         System.out.println("=================================");
                         System.out.println("Bot Location: " + botLocation.toString());
                         ship.setBot(botLocation.getX(), botLocation.getY());
+                
+                        // Implementing a Stochastic Mouse 
                         if(i != 0 && doesMouseMove.equals("Y")){
-
                             Cell tempMouse = mouse.moveMouse(mouseLocation);
                             mouseLocation.setLocation(tempMouse.getX(), tempMouse.getY());
                             System.out.println("Mouse Location: " + mouseLocation.toString());
                         }
+                            
+                        // Print path and details first iteration
                         if(i == 0){
                             for(Cell cell : path){
                                 System.out.print(cell.toString() + " -> ");
@@ -67,8 +70,10 @@ public class Main {
                             System.out.println("Mouse Location: " + mouseLocation.toString());
                             System.out.println("\nThe path's size: " + path.size() + "\n");
                         }
+
                         ship.printCompleteGrid();
 
+                        // Iterate through the path
                         if(path.size() > 0){
                             if(path.size() > timesteps){
                                 timesteps = path.size();
@@ -102,20 +107,18 @@ public class Main {
                 Ship ship = new Ship(D);
                 int alternateMoves = 1; 
 
-                // Bot
+                // Bot Initialization
                 Bot_2 bot_2 = new Bot_2(ship);
                 Cell botLocation = bot_2.placeBot();
                 ship.setBot(botLocation.getX(), botLocation.getY());
 
-                // Mouse
+                // Mouse Initialization
                 Mouse mouse = new Mouse (ship);
                 Cell mouseLocation = mouse.placeMouse();
                 ship.setMouse(mouseLocation.getX(), mouseLocation.getY());
                 mouseLocation.setLocation(mouseLocation.getX(), mouseLocation.getY());
 
                 int timesteps = 0;
-
-                
 
                 while(true){
                     System.out.println("===============================");
@@ -126,22 +129,26 @@ public class Main {
 
                     if(alternateMoves % 2 == 0){ // Bot Moves
 
-                        System.out.println("BOT SENSED, NOW MOVE TURN");
+                        System.out.println("BOT DONE SENSING, NOW MOVE TURN");
 
+                        // Implement a Stochastic Mouse 
                         if(doesMouseMove.equals("Y")){
-                            // Moving Mouse
                             Cell tempMouse = mouse.moveMouse(mouseLocation);
                             mouseLocation.setLocation(tempMouse.getX(), tempMouse.getY());
                             System.out.println("Mouse Location: " + mouseLocation.toString());
                         }
 
                         ship.printCompleteGrid();
+
                         if(mouseLocation.getX() == botLocation.getX() && mouseLocation.getY() == botLocation.getY()){
                             System.out.println("Bot has found the mouse in " + timesteps + " timesteps.");
                             break;
                         }
+
                         Cell hProbCell = ship.findHProbCell();
                         List<Cell> path = (bot_2.breadthFirstSearch(ship, hProbCell));
+
+                        // Iterate through the path 
                         if(path.size() > 0){
                             System.out.println("Path size: " + path.size());
                             if(path.size() > timesteps){
@@ -162,22 +169,26 @@ public class Main {
                     }
                     else if(alternateMoves % 2 == 1){ // Bot senses
 
-                        System.out.println("BOT MOVED, NOW SENSE TURN");
+                        System.out.println("BOT JUST MOVED, NOW SENSE TURN");
                         
+                        // Implement Stochastic Mouse 
                         if(doesMouseMove.equals("Y")){
-                            // Moving Mouse
                             Cell tempMouse = mouse.moveMouse(mouseLocation);
                             mouseLocation.setLocation(tempMouse.getX(), tempMouse.getY());
                             System.out.println("Mouse Location: " + mouseLocation.toString());
                         }
 
                         ship.printCompleteGrid();
+
                         if(mouseLocation.getX() == botLocation.getX() && mouseLocation.getY() == botLocation.getY()){
                             System.out.println("Bot has found the mouse in " + timesteps + " timesteps.");
                             break;
                         }
+
                         Cell hProbCell = ship.findHProbCell();
                         List<Cell> path = (bot_2.breadthFirstSearch(ship, hProbCell));
+
+                        // Iterate through thr path 
                         if(path.size() > 0){
                             System.out.println("Path size: " + path.size());
                             if(path.size() > timesteps){
@@ -206,7 +217,7 @@ public class Main {
             }
             
             /*
-             * Bot 3 Implementation: Plan a path, move along the path similar to Bot 1,
+             * Bot 3 Implementation: Plan a path, move along the path directly (just as Bot 1),
              * when x steps away from hProbCell, start switching between sensing and moving as Bot 2 does
              */
             if(menuOption.equals("3")){ // Bot 3
@@ -222,12 +233,12 @@ public class Main {
                 boolean needRecalculation = true;
                 boolean needDetection = true;
 
-                // Bot
+                // Bot Initialization
                 Bot_3 bot_3 = new Bot_3(ship);
                 Cell botLocation = bot_3.placeBot();
                 ship.setBot(botLocation.getX(), botLocation.getY());
 
-                // Mouse
+                // Mouse Initialization
                 Mouse mouse = new Mouse (ship);
                 Cell mouseLocation = mouse.placeMouse();
                 ship.setMouse(mouseLocation.getX(), mouseLocation.getY());
@@ -245,12 +256,13 @@ public class Main {
                         System.out.println("=================================");
                         System.out.println("Bot Location: " + botLocation.toString());
                         ship.setBot(botLocation.getX(), botLocation.getY());
+                        // Implement a Stochastic Mouse 
                         if(i != 0 && doesMouseMove.equals("Y")){
-                            // Comment off lines 47 & 48 for a stationary mouse
                             Cell tempMouse = mouse.moveMouse(mouseLocation);
                             mouseLocation.setLocation(tempMouse.getX(), tempMouse.getY());
                             System.out.println("Mouse Location: " + mouseLocation.toString());
                         }
+                        // For the first iteration, display program details 
                         if(i == 0){
                             for(Cell cell : path){
                                 System.out.print(cell.toString() + " -> ");
@@ -260,6 +272,7 @@ public class Main {
                             System.out.println("Mouse Location: " + mouseLocation.toString());
                             System.out.println("\nThe path's size: " + path.size() + "\n");
                         }
+
                         ship.printCompleteGrid();
 
                         if(path.size() > 0){
@@ -269,6 +282,8 @@ public class Main {
                             System.out.println();
                             botLocation.setLocation(path.get(i).getX(), path.get(i).getY());
                         }
+                        /* When the bot gets x steps away from the mouse, switch to new
+                           algorithm where bot alternates between moving and sensing */
                         if(path.size() > 4 && botLocation.getX() == path.get(path.size() - 4).getX() && botLocation.getY() == path.get(path.size() - 4).getY()){
                             System.out.println("~~~ Switching to DETECTION MODE ~~~");
                             needDetection = true;
