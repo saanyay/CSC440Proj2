@@ -275,4 +275,10 @@ public class Ship{
         return result;
     }
 
+    public int calcFunction(int pathSize){
+        int p;
+        p = (int)((pathSize * 0.5) - 0.5);
+        return p;
+    }
+
 }
