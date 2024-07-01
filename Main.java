@@ -284,7 +284,9 @@ public class Main {
                         }
                         /* When the bot gets x steps away from the mouse, switch to new
                            algorithm where bot alternates between moving and sensing */
-                        if(path.size() > 4 && botLocation.getX() == path.get(path.size() - 4).getX() && botLocation.getY() == path.get(path.size() - 4).getY()){
+                        if(path.size() > ship.calcFunction(path.size())
+                           && botLocation.getX() == path.get(path.size() - ship.calcFunction(path.size())).getX() 
+                           && botLocation.getY() == path.get(path.size() - ship.calcFunction(path.size())).getY()){
                             System.out.println("~~~ Switching to DETECTION MODE ~~~");
                             needDetection = true;
                             break;
