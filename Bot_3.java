@@ -46,8 +46,8 @@ public class Bot_3 extends Bot{
                 List<Cell> path = new ArrayList<>();
                 Cell node = current;
                 if (node.getParentCell() == null || node == null) {
-                    System.out.println("No path exists between bot and button.");
-                    return null;
+                    Collections.reverse(path);
+                    return path;
                 }
                 else {
                     while(node.getParentCell() != null){
