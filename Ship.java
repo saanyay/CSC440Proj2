@@ -281,4 +281,16 @@ public class Ship{
         return p;
     }
 
+    public void noBeepProbs(){
+        for (int y = 0; y < grid.length; y++) {
+            for (int x = 0; x < grid[0].length; x++) {
+                if(isOpenCell(x,y)){
+                    Cell currentCell = new Cell(x, y);
+                    currentCell.setProb(calculateProb(currentCell));
+
+                }
+            }
+        }
+    }
+
 }
