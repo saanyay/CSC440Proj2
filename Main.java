@@ -77,6 +77,7 @@ public class Main {
                         }
                         else if(path.size() == 0){
                             System.out.println("There is no path from the bot to the mouse. (1)");
+                            ship.noBeepProbs();
                             needRecalculation = true;
                         }
                         if(botLocation.getX() == ship.getMouse().getX() && botLocation.getY() == ship.getMouse().getY()){
@@ -153,6 +154,7 @@ public class Main {
                         }
                         else if (path.size() == 0){
                             System.out.println("There is no path from the bot to the button. ");
+                            ship.noBeepProbs();
                             break;
                         }
                         alternateMoves++;
@@ -186,6 +188,7 @@ public class Main {
                         }
                         else if (path.size() == 0){
                             System.out.println("There is no path from the bot to the button. ");
+                            ship.noBeepProbs();
                             break;
                         }
                         if(botLocation.getX() == ship.getMouse().getX() && botLocation.getY() == ship.getMouse().getY()){
