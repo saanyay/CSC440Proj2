@@ -38,32 +38,48 @@ public class Mouse {
             if((mouse.getY() > 0) && (ship.isOpenCell(mouse.getX(), mouse.getY() - 1))){
                 newMouse.setX(mouse.getX());
                 newMouse.setY(mouse.getY() -1);
-                ship.setMouse(mouse.getX(), mouse.getY() - 1);
+                ship.setMouse(newMouse.getX(), newMouse.getY());
                 return newMouse;
+            }
+            else{
+                newMouse.setX(mouse.getX());
+                newMouse.setY(mouse.getY());
             }
         }
         if(randomNumber == 2){ // Move down
             if((mouse.getY() < ship.getSize() - 1) && (ship.isOpenCell(mouse.getX(), mouse.getY() + 1))){
                 newMouse.setX(mouse.getX());
                 newMouse.setY(mouse.getY() + 1);
-                ship.setMouse(mouse.getX(), mouse.getY() + 1);
+                ship.setMouse(newMouse.getX(), newMouse.getY());
                 return newMouse;
+            }
+            else{
+                newMouse.setX(mouse.getX());
+                newMouse.setY(mouse.getY());
             }
         }
         if(randomNumber == 3){ // Move Left
             if((mouse.getX() > 0) && (ship.isOpenCell(mouse.getX() - 1, mouse.getY()))){
                 newMouse.setX(mouse.getX() - 1);
                 newMouse.setY(mouse.getY());
-                ship.setMouse(mouse.getX() - 1, mouse.getY());
+                ship.setMouse(newMouse.getX(), newMouse.getY());
                 return newMouse;
+            }
+            else{
+                newMouse.setX(mouse.getX());
+                newMouse.setY(mouse.getY());
             }
         }
         if(randomNumber == 4){ // Move Right
             if((mouse.getX() < ship.getSize() - 1) && (ship.isOpenCell(mouse.getX() + 1, mouse.getY()))){
                 newMouse.setX(mouse.getX() + 1);
                 newMouse.setY(mouse.getY());
-                ship.setMouse(mouse.getX() + 1, mouse.getY());
+                ship.setMouse(newMouse.getX(), newMouse.getY());
                 return newMouse;
+            }
+            else{
+                newMouse.setX(mouse.getX());
+                newMouse.setY(mouse.getY());
             }
         }
         else{ // Stay in place
